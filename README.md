@@ -69,6 +69,8 @@
 |                                         **_wombat_**<br>[source](https://github.com/djoyner/iTerm2-wombat)                                         |![wombat](images/wombat.png)|
 |                                                                    **_xterm_**                                                                     |![xterm](images/xterm.png)|
 
+**There's 200+ themes!**
+
 ## Installation:
 
 ```
