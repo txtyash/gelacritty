@@ -1,10 +1,10 @@
 # GELACRITTY 
 ## Theming Gone Random
 
-Quickly set a random alacritty theme on the fly
+**Quickly set a random alacritty theme on the fly**
 
 *Installation at the bottom*
-[PREVIEW](images/preview.png)|
+![PREVIEW](images/preview.png)
 
 ## Color Schemes
 
