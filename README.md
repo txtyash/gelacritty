@@ -3,7 +3,8 @@
 
 **Quickly set a random alacritty theme on the fly**
 
-*Installation at the bottom*
+*Installation at the bottom of README*
+
 ![PREVIEW](images/preview.png)
 
 ## Color Schemes
