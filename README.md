@@ -8,7 +8,7 @@ Quickly set a random alacritty theme on the fly
 ```
 git clone https://github.com/zim0369/gelacritty ~/.config/alacritty/gelacritty
 ```
-Now move the script in a location that exists in $PATH.
+Now move the script to a location that exists in $PATH.
 ```
 sudo mv ~/.config/alacritty/gelacritty/gela /usr/local/bin/
 ```
