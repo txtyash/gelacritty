@@ -1,26 +1,64 @@
-#!/usr/bin/bash
-clear 
-grep gelacritty $HOME/.config/alacritty/alacritty.yml
-if [ $? -eq 0 ]; then
-    while true; do
-        echo -ne "\n\n\n      light(l) dark(d) quit(q) :\n      "
-        read -r -n 1 action
-        if [[ "$action" = "l" ]]; then
-            location="$( find $HOME/.config/alacritty/gelacritty/light/ -type f | shuf -n 1 )"
-        elif [[ "$action" = "d" ]]; then
-            location="$( find $HOME/.config/alacritty/gelacritty/dark/ -type f | shuf -n 1 )"
-        elif [[ "$action" = "q" ]]; then
-            break
-        else
-            echo -ne "\n\n BAD CHOICE"
-            sleep 1 
-        fi
-        cat "$location" > $HOME/.config/alacritty/gelacritty.yml
-        clear 
-        echo -ne "\n\n      $location"
-    done
-    clear 
-else
-    echo -e 'import:\n- ~/.config/alacritty/gelacritty.yml' >> $HOME/.config/alacritty/alacritty.yml
-    echo -e "\n\n\n      Please run the program again :)"
-fi
+#!/usr/bin/env bash
+
+show_help() {
+	cat << EOF
+Randomly select & apply an alacritty color theme
+
+USAGE: ${0##*/} [OPTIONS]
+
+OPTIONS:
+	-h, --help 		Show this help message
+	-d, --dark 		Only select dark themes
+	-l, --light 	Only select light themes
+EOF
+}
+
+getTheme() {
+	if [ -n "${*}" ]; then
+		find "${gelacritty%.*}/${*}" -type f -name "*.yml" | shuf --head-count="1"
+	else
+		find "${gelacritty%.*}" -mindepth 2 -type f -name "*.yml" | shuf --head-count="1"
+	fi
+}
+
+main() {
+	local opts gelacritty alacritty type theme
+	alacritty="${XDG_CONFIG_HOME:-${HOME}/.config}/alacritty/alacritty.yml"
+	gelacritty="${alacritty%/*}/gelacritty.yml"
+	opts="$(getopt --options hdl --longoptions help,dark,light --name "${0##*/}" -- "${@}")"
+	
+	eval set -- "${opts}"
+	while true; do
+		case "${1}" in
+			-h | --help ) 	show_help; exit 0;;
+			-d | --dark ) 	type="dark";;
+			-l | --light ) 	type="light";;
+			-- ) 			shift; break;;
+			* ) 			break;;
+		esac
+		shift
+	done
+	
+	if ! [ -s "${alacritty}" ]; then
+		printf '%s\n' "Cannot find alacritty configuration: '${alacritty}'" >&2
+		return 1
+	fi
+	
+	if ! grep --quiet 'gelacritty\.yml' "${alacritty}"; then
+		printf '%s\n' "Adding gelacritty import to alacritty config..."
+		printf 'import:\n- %s' "${gelacritty}" >> "${alacritty}"
+	fi
+	
+	printf '%s\n' "Randomly selecting theme..."
+	theme="$(getTheme "${type}")"
+	
+	printf '%s\n' "Applying theme: '${theme##*/}'..."
+	if ! cp --force "${theme}" "${gelacritty}" &>/dev/null; then
+		printf '%s\n' "Failed to apply theme!" >&2
+		return 1
+	fi
+	
+	return 0
+}
+
+main "${@}"
