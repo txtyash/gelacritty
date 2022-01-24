@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+clear 
+grep gelacritty $HOME/.config/alacritty/alacritty.yml
+if [ $? -eq 0 ]; then
+    while true; do
+        echo -ne "\n\n\n      light(l) dark(d) quit(q) :\n      "
+        read -r -n 1 action
+        if [[ "$action" = "l" ]]; then
+            location="$( find $HOME/.config/alacritty/gelacritty/light/ -type f | shuf -n 1 )"
+        elif [[ "$action" = "d" ]]; then
+            location="$( find $HOME/.config/alacritty/gelacritty/dark/ -type f | shuf -n 1 )"
+        elif [[ "$action" = "q" ]]; then
+            break
+        else
+            echo -ne "\n\n BAD CHOICE"
+            sleep 1 
+        fi
+        cat "$location" > $HOME/.config/alacritty/gelacritty.yml
+        clear 
+        echo -ne "\n\n      $location"
+    done
+    clear 
+else
+    echo -e 'import:\n- ~/.config/alacritty/gelacritty.yml' >> $HOME/.config/alacritty/alacritty.yml
+    echo -e "\n\n\n      Please run the program again :)"
+fi
