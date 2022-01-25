@@ -1,9 +1,9 @@
-# GELACRITTY 
-## Theming Gone Random
+<h1 align='center'>GELACRITTY</h1> 
+<h3 align='center'>Quickly set a random alacritty theme</h1>
 
-**Quickly set a random alacritty theme on the fly**
+****
 
-*Installation at the bottom of README*
+<p align='center'><em>Installation at the bottom of README</em></p>
 
 ![PREVIEW](images/preview.png)
 
@@ -93,4 +93,6 @@ All done!
 For dark theme: `-d`
 
 For light theme: `-l`
+
+
 
