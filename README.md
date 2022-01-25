@@ -1,5 +1,5 @@
-<h1 align='center'>GELACRITTY</h1> 
-<h3 align='center'>Quickly set a random alacritty theme</h1>
+<h2 align='center'>GELACRITTY</h1> 
+<h4 align='center'>Quickly set a random alacritty theme</h1>
 
 ****
 
@@ -7,7 +7,7 @@
 
 ![PREVIEW](images/preview.png)
 
-## Color Schemes
+<h4 align='center'>Color Schemes</h2>
 
 |                                                                        NAME                                                                        |COLORS|
 |:--------------------------------------------------------------------------------------------------------------------------------------------------:|:---:|
@@ -69,7 +69,8 @@
 |                                         **_wombat_**<br>[source](https://github.com/djoyner/iTerm2-wombat)                                         |![wombat](images/wombat.png)|
 |                                                                    **_xterm_**                                                                     |![xterm](images/xterm.png)|
 
-**There's 200+ themes!**
+<p align='center'><strong>There's 200+ themes!</strong></p>
+
 
 ## Installation:
 
@@ -93,6 +94,3 @@ All done!
 For dark theme: `-d`
 
 For light theme: `-l`
-
-
-
