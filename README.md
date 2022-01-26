@@ -94,3 +94,5 @@ All done!
 For dark theme: `-d`
 
 For light theme: `-l`
+
+Simply running `gela` without any flag will apply a random light/dark theme.
