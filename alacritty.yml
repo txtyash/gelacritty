@@ -1,0 +1,76 @@
+env:
+  TERM: xterm-256color
+window:
+  padding:
+    x: 3
+    y: 3
+  dynamic_padding: false
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+scrolling:
+  history: 5000
+  multiplier: 3
+  auto_scroll: false
+font:
+  normal:
+    family: FuraCode Nerd Font
+    style: Medium
+  bold:
+    family: FuraCode Nerd Font
+    style: Bold
+  italic:
+    family: FuraCode Nerd Font
+    style: Italic
+  bold_italic:
+    family: FuraCode Nerd Font
+    style: Bold Italic
+  size: 7.5
+  offset:
+    x: 0
+    y: 1
+draw_bold_text_with_bright_colors: true
+window.opacity: 1
+shell:
+  program: /usr/bin/fish
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: P, mods: Alt, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Y, mods: Alt, action: Copy }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Paste, mods: None, action: Paste }
+  - { key: Copy, mods: None, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, chars: "\f" }
+  - { key: V, mods: Alt, action: ToggleViMode }
+  - {
+      key: U,
+      mods: Control,
+      action: ScrollHalfPageUp,
+      mode: ~Alt
+    }
+  - {
+      key: D,
+      mods: Control,
+      action: ScrollHalfPageDown,
+      mode: ~Alt
+    }
+  - {
+      key: PageUp,
+      mods: Alt,
+      action: ScrollToTop,
+      mode: ~Alt
+    }
+  - {
+      key: PageDown,
+      mods: Alt,
+      action: ScrollToBottom,
+      mode: ~Alt
+    }
+
+ 
+ 
+import:
+- /home/zim/.config/alacritty/gelacritty.yml
