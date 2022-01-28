@@ -70,8 +70,8 @@ prerequisite() {
 check_prev () {
 	banner
 	if [[ (-L /usr/local/bin/gela) || (-f /usr/local/bin/gela) ]]; then
-		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}gelacritty ${GREEN}is already installed."; }
-		{ read -p "    ${BLUE}[${RED}?${BLUE}] ${ORANGE}Do you wish to reinstall? (y/n): ${GREEN}"; echo; }
+		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}Gelacritty ${GREEN}is already installed."; }
+		{ read -p "    ${BLUE}[${RED}?${BLUE}] ${ORANGE}Do you wish to update? (y/n): ${GREEN}"; echo; }
 		if [[ "$REPLY" =~ ^[y/Y]$ ]]; then
 			install_gelacritty
 		else
