@@ -227,6 +227,8 @@ update_gela () {
 	fi
     chmod +x * 
     sh install 
+    echo "    ${BLUE}[${RED}♥${BLUE}] ${ORANGE}SUCCESFULLY UPDATED"
+	{ reset_color; exit 0; }
 }
  
 # fzf_apply(){} 
