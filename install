@@ -94,12 +94,18 @@ install_gelacritty () {
 	if [[ ! -d $ALACRITTY_DIR ]]; then
 		mkdir $ALACRITTY_DIR
 	fi
-	# User Config
-	if [[ -f $ALACRITTY_DIR/alacritty.yml ]]; then
-		mv $ALACRITTY_DIR/alacritty.yml{,.user}
+     
+	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
+		printf '%s\n' "Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'" >&2
+		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
+	    cp $DIR/alacritty.yml $ALACRITTY_DIR
 	fi
-	# Copy new config
-	cp $DIR/alacritty.yml $ALACRITTY_DIR
+     
+	if ! grep --quiet 'gelacritty\.yml' "${ALACRITTY_DIR}/alacritty.yml"; then
+		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Adding gelacritty import to alacritty config..."
+		printf 'import:\n- %s' "${ALACRITTY_DIR}/gelacritty.yml" >> "${ALACRITTY_DIR}/alacritty.yml"
+	fi
+	
 	# Copying files
 	{ echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Copying files to '/usr/local/share' directory..."${BLUE}; }
 	{ printf "    "; sudo mkdir /usr/local/share/gelacritty; sudo mkdir -p /usr/local/share/fonts/gelacritty; }
