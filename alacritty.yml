@@ -73,4 +73,4 @@ key_bindings:
  
  
 import:
-- /home/zim/.config/alacritty/gelacritty.yml
+- $HOME/.config/alacritty/gelacritty.yml
