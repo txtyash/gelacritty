@@ -56,7 +56,7 @@ reset_color() {
 
 ## Prerequisite
 prerequisite() {
-    dependencies=(alacritty sed grep egrep find)
+    dependencies=(alacritty git sed grep egrep find)
     for dependency in "${dependencies[@]}"; do
         type -p "$dependency" &>/dev/null || {
 			banner
@@ -98,6 +98,7 @@ install_gelacritty () {
 	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
 		printf '%s\n' "Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'" >&2
 		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
+        # sed -i -e 's|program: .*|program: '$SHELL'|g' $DIR/alacritty.yml
 	    cp $DIR/alacritty.yml $ALACRITTY_DIR
 	fi
      

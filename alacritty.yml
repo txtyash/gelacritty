@@ -32,8 +32,8 @@ font:
     y: 1
 draw_bold_text_with_bright_colors: true
 window.opacity: 1
-shell:
-  program: $SHELL
+# shell:
+#   program: ADD YOUR SHELL
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: P, mods: Alt, action: Paste }
@@ -69,8 +69,3 @@ key_bindings:
       action: ScrollToBottom,
       mode: ~Alt
     }
-
- 
- 
-import:
-- $HOME/.config/alacritty/gelacritty.yml

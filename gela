@@ -300,16 +300,17 @@ main() {
 		esac
 		shift
 	done
-	
+     
 	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
 		printf '%s\n' "Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'" >&2
 		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
+        # sudo sed -i -e 's|program: .*|program: '$SHELL'|g' /usr/local/share/gelacritty/alacritty.yml
 	    cp -r /usr/local/share/gelacritty/alacritty.yml $ALACRITTY_DIR
-        { reset_color; exit; } #TODO reload_settings; 
+        { reset_color; exit; }
 	fi
-	
+     
 	if ! grep --quiet 'gelacritty\.yml' "${ALACRITTY_DIR}/alacritty.yml"; then
-		printf '%s\n' "Adding gelacritty import to alacritty config..."
+		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Adding gelacritty import to alacritty config..."
 		printf 'import:\n- %s' "${ALACRITTY_DIR}/gelacritty.yml" >> "${ALACRITTY_DIR}/alacritty.yml"
 	fi
 	
