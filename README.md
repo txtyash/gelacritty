@@ -1,9 +1,10 @@
 <h2 align='center'>GELACRITTY :unicorn: </h1>
 <h4 align='center'>Set light/dark themes & fonts in Alacritty</h1>
 
-![PREVIEW](images/preview.png)
-
-<p align='center'><strong>There's 200+ themes!</strong></p>
+<p align='center'>
+<img src="images/preview.png"
+<strong>There's 200+ themes!</strong>
+</p>
 
 ### Installation :arrow_down_small:
 
