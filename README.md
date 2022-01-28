@@ -4,9 +4,8 @@
 <p align='center'>
 <img src="images/banner.png" />
 <img src="images/preview.png" />
-<img src="images/update.png" />
 <img src="images/fonts.png" />
-<img src="images/update.png" />
+<img src="images/update.png" /><br>
 <strong> :sparkle: There's 200+ themes! :sparkle: </strong>
 </p>
 
