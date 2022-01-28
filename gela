@@ -213,9 +213,9 @@ apply_fonts () {
 # TODO 
 ## Import files
 update_gela () {
+    echo "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
     banner; 
-    echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
-    echo;
+    echo -n "    ${BLUE}"
 	if [[ ! -d $HOME/gelacritty ]]; then
         git clone https://github.com/zim0369/gelacritty $HOME/gelacritty 
         cd $HOME/gelacritty 
