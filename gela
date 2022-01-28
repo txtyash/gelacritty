@@ -302,7 +302,7 @@ main() {
 	done
      
 	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
-		printf '%s\n' "Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'" >&2
+		echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'"${BLUE}
 		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
         # sudo sed -i -e 's|program: .*|program: '$SHELL'|g' /usr/local/share/gelacritty/alacritty.yml
 	    cp -r /usr/local/share/gelacritty/alacritty.yml $ALACRITTY_DIR
