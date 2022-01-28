@@ -109,7 +109,7 @@ install_gelacritty () {
 	# Copying files
 	{ echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Copying files to '/usr/local/share' directory..."${BLUE}; }
 	{ printf "    "; sudo mkdir /usr/local/share/gelacritty; sudo mkdir -p /usr/local/share/fonts/gelacritty; }
-	{ sudo cp -r $DIR/colors /usr/local/share/gelacritty/; sudo cp -r $DIR/fonts/* /usr/local/share/fonts/gelacritty/; sudo cp -r $DIR/gela /usr/local/share/gelacritty/; }
+	{ sudo cp -r $DIR/colors $DIR/gela $DIR/alacritty.yml /usr/local/share/gelacritty/; sudo cp -r $DIR/fonts/* /usr/local/share/fonts/gelacritty/; }
 	{ sudo chmod +x /usr/local/share/gelacritty/gela; sudo fc-cache; sudo ln -s /usr/local/share/gelacritty/gela /usr/local/bin/gela; }
 
 	# Verify files 

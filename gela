@@ -303,7 +303,9 @@ main() {
 	
 	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
 		printf '%s\n' "Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'" >&2
-		return 1
+		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
+	    cp -r /usr/local/share/gelacritty/alacritty.yml $ALACRITTY_DIR
+        { reset_color; exit; } #TODO reload_settings; 
 	fi
 	
 	if ! grep --quiet 'gelacritty\.yml' "${ALACRITTY_DIR}/alacritty.yml"; then
