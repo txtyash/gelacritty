@@ -45,7 +45,7 @@ BTW, Doesn't work on WINDOWS
 
 ### Credits :hugs:
 
-STEWIE410: https://www.reddit.com/user/stewie410/ 
+stewie410: https://www.reddit.com/user/stewie410/ 
 
 Aditya Shakya: https://github.com/adi1090x 
 
