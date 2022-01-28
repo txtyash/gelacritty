@@ -2,7 +2,9 @@
 <h3 align='center'> :jack_o_lantern: Set light/dark themes & fonts in Alacritty :christmas_tree: </h1>
 
 <p align='center'>
-<img src="images/preview.png" /><br>
+<img src="images/banner.png" />
+<img src="images/preview.png" />
+<img src="images/update.png" />
 <strong> :sparkle: There's 200+ themes! :sparkle: </strong>
 </p>
 
