@@ -1,4 +1,4 @@
-<h2 align='center'>GELACRITTY</h1> :unicorn:
+<h2 align='center'>GELACRITTY :unicorn: </h1>
 <h4 align='center'>Set light/dark themes & fonts in Alacritty</h1>
 
 ![PREVIEW](images/preview.png)
@@ -39,9 +39,6 @@ For quickly switching theme:
 Dark: `-d`
 
 Light: `-l`
-<<<<<<< HEAD
-
-Simply running `gela` without any flag will apply a random light/dark theme.
 
 BTW, Doesn't work on WINDOWS
 
@@ -52,5 +49,3 @@ STEWIE410: https://www.reddit.com/user/stewie410/
 Aditya Shakya: https://github.com/adi1090x 
 
 Rajasegar: https://github.com/rajasegar
-=======
->>>>>>> 0b0a8854a4202cbd25c0420ea7e298ce3db77299
