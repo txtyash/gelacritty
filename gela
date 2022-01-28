@@ -213,7 +213,13 @@ apply_fonts () {
 # TODO 
 ## Import files
 update_gela () {
-    echo 'updating...'
+    banner; 
+    echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
+    echo;
+    git clone https://github.com/zim0369/gelacritty $HOME/gelacritty 
+    cd $HOME/gelacritty 
+    chmod +x * 
+    sh install 
 }
  
 # fzf_apply(){} 

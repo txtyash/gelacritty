@@ -96,7 +96,7 @@ install_gelacritty () {
 	fi
 	# User Config
 	if [[ -f $ALACRITTY_DIR/alacritty.yml ]]; then
-		mv $ALACRITTY_DIR/alcritty.yml{,.user}
+		mv $ALACRITTY_DIR/alacritty.yml{,.user}
 	fi
 	# Copy new config
 	cp $DIR/alacritty.yml $ALACRITTY_DIR
