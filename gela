@@ -227,6 +227,7 @@ update_gela () {
 	fi
     chmod +x * 
     sh install 
+    { banner; echo;}
     echo "    ${BLUE}[${RED}♥${BLUE}] ${ORANGE}SUCCESFULLY UPDATED"
 	{ reset_color; exit; }
 }
