@@ -1,11 +1,11 @@
-<h2 align='center'>GELACRITTY</h1> 
+<h2 align='center'>GELACRITTY</h1> :unicorn:
 <h4 align='center'>Set light/dark themes & fonts in Alacritty</h1>
 
 ![PREVIEW](images/preview.png)
 
 <p align='center'><strong>There's 200+ themes!</strong></p>
 
-### Installation:
+### Installation :arrow_down_small:
 
 ```
 git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
@@ -22,15 +22,17 @@ Run the installer:
 ```
 ./install
 ```
-All done! Now use command `gela`
+All done! :heavy_check_mark:
 
-### Uninstall:
+Now use command `gela`
+
+### Uninstall :broken_heart:
 ```
 cd $HOME/gelacritty
 ./uninstall
 ```
 
-### Tip:
+### Tip :spiral_notepad:
 
 For quickly switching theme:
 
@@ -39,3 +41,13 @@ Dark: `-d`
 Light: `-l`
 
 Simply running `gela` without any flag will apply a random light/dark theme.
+
+BTW, Doesn't work on WINDOWS
+
+### Credits :hugs:
+
+STEWIE410: https://www.reddit.com/user/stewie410/ 
+
+Aditya Shakya: https://github.com/adi1090x 
+
+Rajasegar: https://github.com/rajasegar
