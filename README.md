@@ -1,12 +1,12 @@
-<h2 align='center'>GELACRITTY :unicorn: </h1>
-<h4 align='center'>Set light/dark themes & fonts in Alacritty</h1>
+<h2 align='center'> :unicorn: GELACRITTY :unicorn: </h1>
+<h3 align='center'> :jack_o_lantern: Set light/dark themes & fonts in Alacritty :christmas_tree: </h1>
 
 <p align='center'>
-<img src="images/preview.png"
-<strong>There's 200+ themes!</strong>
+<img src="images/preview.png" /><br>
+<strong> :sparkle: There's 200+ themes! :sparkle: </strong>
 </p>
 
-### Installation :arrow_down_small:
+### Installation :rainbow:
 
 ```
 git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
