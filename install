@@ -69,7 +69,7 @@ prerequisite() {
 ## Check for previous installation
 check_prev () {
 	banner
-	if [[ (-L /usr/local/bin/gela) && (-d /usr/local/share/gelacritty) ]]; then
+	if [[ (-L /usr/local/bin/gela) || (-f /usr/local/bin/gela) ]]; then
 		{ echo; echo "    ${BLUE}[${RED}!${BLUE}] ${MAGENTA}gelacritty ${GREEN}is already installed."; }
 		{ read -p "    ${BLUE}[${RED}?${BLUE}] ${ORANGE}Do you wish to reinstall? (y/n): ${GREEN}"; echo; }
 		if [[ "$REPLY" =~ ^[y/Y]$ ]]; then
