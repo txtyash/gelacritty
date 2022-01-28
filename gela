@@ -201,7 +201,7 @@ apply_fonts () {
         echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Applying Fonts..."
         sed -i -e "s/family: .*/family:      $actual_font_name/g" $ALACRITTY_DIR/alacritty.yml
         sed -i -e "s/size: .*/size:  ${font_size:-10}/g" $ALACRITTY_DIR/alacritty.yml
-        { echo "    ${BLUE}[${RED}!${BLUE}] ${ORANGE}Please Restart Alacritty."; echo; }
+        { echo "    ${BLUE}[${RED}!${BLUE}] ${ORANGE}Applied a new font"; echo; }
         { reset_color; exit; }
     else
         echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}Invalid Option, Try Again."
