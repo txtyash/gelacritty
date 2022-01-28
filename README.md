@@ -16,7 +16,7 @@ cd $HOME/gelacritty
 ```
 Make the script executable:
 ```
-sudo chmod +x *
+chmod +x *
 ```
 Run the installer:
 ```
