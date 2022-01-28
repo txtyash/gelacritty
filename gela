@@ -216,8 +216,15 @@ update_gela () {
     banner; 
     echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
     echo;
-    git clone https://github.com/zim0369/gelacritty $HOME/gelacritty 
-    cd $HOME/gelacritty 
+	if [[ ! -d $HOME/gelacritty ]]; then
+        git clone https://github.com/zim0369/gelacritty $HOME/gelacritty 
+        cd $HOME/gelacritty 
+    else
+        echo; 
+        echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}Directory Exists..."
+        cd $HOME/gelacritty
+        git pull
+	fi
     chmod +x * 
     sh install 
 }
