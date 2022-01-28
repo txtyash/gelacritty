@@ -37,5 +37,3 @@ For quickly switching theme:
 Dark: `-d`
 
 Light: `-l`
-
-Simply running `gela` without any flag will apply a random light/dark theme.
