@@ -33,7 +33,7 @@ font:
 draw_bold_text_with_bright_colors: true
 window.opacity: 1
 shell:
-  program: /usr/bin/fish
+  program: $SHELL
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: P, mods: Alt, action: Paste }
