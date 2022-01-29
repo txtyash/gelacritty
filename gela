@@ -310,6 +310,7 @@ main() {
 	if ! grep --quiet 'gelacritty\.yml' "${ALACRITTY_DIR}/alacritty.yml"; then
 		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Adding gelacritty import to alacritty config..."
 		printf 'import:\n- %s' "${ALACRITTY_DIR}/gelacritty.yml" >> "${ALACRITTY_DIR}/alacritty.yml"
+        { reset_color; exit; }
 	fi
 	
     if [ $type = "light" ]; then
