@@ -9,9 +9,9 @@ DEFAULT_FG="$(printf '\033[39m')"  DEFAULT_BG="$(printf '\033[49m')" BOLD="$(tpu
 
 ## Directories
 ALACRITTY_DIR="$HOME/.config/alacritty"
-LIGHT_DIR='/usr/local/share/gelacritty/colors/light'
-DARK_DIR='/usr/local/share/gelacritty/colors/dark'
-FONTS_DIR='/usr/local/share/fonts/gelacritty'
+LIGHT_DIR="/usr/local/share/gelacritty/colors/light"
+DARK_DIR="/usr/local/share/gelacritty/colors/dark"
+FONTS_DIR="/usr/local/share/fonts/gelacritty"
 
 ## Banner
 banner () {
