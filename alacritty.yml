@@ -36,36 +36,12 @@ window.opacity: 1
 #   program: ADD YOUR SHELL
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
-  - { key: P, mods: Alt, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
-  - { key: Y, mods: Alt, action: Copy }
   - { key: Insert, mods: Shift, action: PasteSelection }
   - { key: Paste, mods: None, action: Paste }
   - { key: Copy, mods: None, action: Copy }
   - { key: L, mods: Control, action: ClearLogNotice }
   - { key: L, mods: Control, chars: "\f" }
   - { key: V, mods: Alt, action: ToggleViMode }
-  - {
-      key: U,
-      mods: Control,
-      action: ScrollHalfPageUp,
-      mode: ~Alt
-    }
-  - {
-      key: D,
-      mods: Control,
-      action: ScrollHalfPageDown,
-      mode: ~Alt
-    }
-  - {
-      key: PageUp,
-      mods: Alt,
-      action: ScrollToTop,
-      mode: ~Alt
-    }
-  - {
-      key: PageDown,
-      mods: Alt,
-      action: ScrollToBottom,
-      mode: ~Alt
-    }
+  - { key: PageUp, mods: Alt, action: ScrollHalfPageUp, mode: ~Alt }
+  - { key: PageDown, mods: Alt, action: ScrollHalfPageDown, mode: ~Alt }
