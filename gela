@@ -9,14 +9,14 @@ DEFAULT_FG="$(printf '\033[39m')"  DEFAULT_BG="$(printf '\033[49m')" BOLD="$(tpu
 
 ## Directories
 ALACRITTY_DIR="$HOME/.config/alacritty"
-LIGHT_DIR='/usr/local/share/gelacritty/colors/light'
-DARK_DIR='/usr/local/share/gelacritty/colors/dark'
-FONTS_DIR='/usr/local/share/fonts/gelacritty'
+LIGHT_DIR="/usr/local/share/gelacritty/colors/light"
+DARK_DIR="/usr/local/share/gelacritty/colors/dark"
+FONTS_DIR="/usr/local/share/fonts/gelacritty"
 
 ## Banner
 banner () {
     clear
-    echo "
+    printf '%s\n' "
     
     ${ORANGE}╭━━━┳━━━┳╮╱╱╭━━━╮
     ${ORANGE}┃╭━╮┃╭━━┫┃╱╱┃╭━╮┃
@@ -30,12 +30,12 @@ banner () {
 }
 
 exit_on_signal_SIGINT () {
-    { printf "\n\n%s\n" "    ${BLUE}[${RED}*${BLUE}] ${RED}Script interrupted." 2>&1; echo; reset_color; }
+    { printf "\n\n%s\n" "    ${BLUE}[${RED}*${BLUE}] ${RED}Script interrupted." 2>&1; printf '%s\n'; reset_color; }
     exit 0
 }
 
 exit_on_signal_SIGTERM () {
-    { printf "\n\n%s\n" "    ${BLUE}[${RED}*${BLUE}] ${RED}Script terminated." 2>&1; echo; reset_color; }
+    { printf "\n\n%s\n" "    ${BLUE}[${RED}*${BLUE}] ${RED}Script terminated." 2>&1; printf '%s\n'; reset_color; }
     exit 0
 }
 
@@ -53,13 +53,13 @@ reset_color() {
 check_files () {
     if [[ "$1" = light ]]; then
         light=($(ls $LIGHT_DIR | egrep '\.yml$'))
-        echo ${#light[@]}
+        printf '%s\n' ${#light[@]}
     elif [[ "$1" = dark ]]; then
         dark=($(ls $DARK_DIR | egrep '\.yml$'))
-        echo ${#dark[@]}
+        printf '%s\n' ${#dark[@]}
     elif [[ "$1" = fonts ]]; then
         fonts=($(ls $FONTS_DIR))
-        echo ${#fonts[@]}
+        printf '%s\n' ${#fonts[@]}
     fi
     return
 }
@@ -67,24 +67,6 @@ check_files () {
 total_light=$(check_files light)
 total_dark=$(check_files dark)
 total_fonts=$(check_files fonts)
-
-## Apply color-schemes
-apply_select () {
-    { read -n 1 -p ${BLUE}"    [D]${RED}Dark ${CYAN}or ${BLUE}[L]${RED}Light${BLUE}? ${GREEN}"; echo; }
-
-    if [[ "$REPLY" =~ ^[l/L/d/D/q/Q]$ ]]; then      #validate input
-        if [[ "$REPLY" =~ ^[l/L]$ ]]; then
-            select_light
-            { reset_color; exit; }  
-        elif [[ "$REPLY" =~ ^[d/D]$ ]]; then
-            select_dark
-            { reset_color; exit; }
-        fi 
-    else
-        echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}Invalid Option, Try Again."
-        { sleep 1; banner; echo; apply_select; }
-    fi
-}
  
 select_light () {
     if ! cd "$LIGHT_DIR"; then
@@ -97,6 +79,7 @@ select_light () {
         return 1
     fi
     printf '\n%s' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${scheme##*/}"
+	printf '%s' "light" > "/tmp/gela_theme.txt"
 	{ reset_color; exit; }
 }
  
@@ -111,29 +94,8 @@ select_dark () {
         return 1
     fi
     printf '\n%s' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${scheme##*/}"
+	printf '%s' "dark" > "/tmp/gela_theme.txt"
 	{ reset_color; exit; }
-}
- 
-random_light () {
-    # Read user selection
-    random_scheme=$(find $LIGHT_DIR -type f -name "*.yml" | shuf -n 1)
-    echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${random_scheme##*/}"
-	if ! cp --force "${random_scheme}" "${ALACRITTY_DIR}/gelacritty.yml" &>/dev/null; then
-		printf '%s\n' "Failed to apply theme!" >&2
-		return 1
-	fi
-    { reset_color; exit; }
-}
- 
-random_dark () {
-    # Read user selection
-    random_scheme=$(find $DARK_DIR -type f -name "*.yml" | shuf -n 1)
-    echo "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${random_scheme##*/}"
-	if ! cp --force "${random_scheme}" "${ALACRITTY_DIR}/gelacritty.yml" &>/dev/null; then
-		printf '%s\n' "Failed to apply theme!" >&2
-		return 1
-	fi
-    { reset_color; exit; }
 }
  
 apply_font_family () {
@@ -141,7 +103,7 @@ apply_font_family () {
         banner 
 		printf '\n%s\n' "    ${BOLD}${RED} ! ${NORMAL} ${BLUE}Your config is broken..."
         sleep 1; 
-        exit;
+        exit 1
 	fi
     if ! cd "$FONTS_DIR"; then
         printf '\n%s\n' "    ${BOLD}${RED} ❌ ${NORMAL} ${BLUE}${FONTS_DIR} doesn't exist${BLUE}";
@@ -149,6 +111,10 @@ apply_font_family () {
     fi 
     font_ttf=$( fzf )
     font_name=$(fc-list | grep -i $font_ttf | head -n 1 | cut -d':' -f2)
+    if [ "$font_name" == "" ];then
+        printf '\n%s\n' "    ${BOLD}${RED} ❌ ${NORMAL} ${BLUE}Failed to apply font${BLUE}";
+        return 1
+    fi 
     printf '\n%s' "    ${BOLD}${RED} ♥ ${NORMAL} ${BLUE}Changing font to: $font_name"
     sed -ie "s/family:.*/family: $font_name/g" "$ALACRITTY_DIR/alacritty.yml"
     exit;
@@ -167,17 +133,49 @@ apply_font_size () {
     sed -ie "s/size:.*/size: ${font_size:-10}/g" "$ALACRITTY_DIR/alacritty.yml"
     exit;
 }
+ 
+random_light () {
+    # Read user selection
+    random_scheme=$(find $LIGHT_DIR -type f -name "*.yml" | shuf -n 1)
+    printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${random_scheme##*/}"
+	if ! cp --force "${random_scheme}" "${ALACRITTY_DIR}/gelacritty.yml" &>/dev/null; then
+		printf '%s\n' "Failed to apply theme!" >&2
+		return 1
+	fi
+	printf '%s' "light" > "/tmp/gela_theme.txt"
+    { reset_color; exit; }
+}
+ 
+random_dark () {
+    # Read user selection
+    random_scheme=$(find $DARK_DIR -type f -name "*.yml" | shuf -n 1)
+    printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${random_scheme##*/}"
+	if ! cp --force "${random_scheme}" "${ALACRITTY_DIR}/gelacritty.yml" &>/dev/null; then
+		printf '%s\n' "Failed to apply theme!" >&2
+		return 1
+	fi
+	printf '%s' "dark" > "/tmp/gela_theme.txt"
+    { reset_color; exit; }
+}
+ 
+toggle_theme () {
+    if grep -Ewq 'dark' "/tmp/gela_theme.txt"; then
+        random_light
+    else
+        random_dark
+    fi 
+} 
 
 update_gela () {
     banner; 
-    echo "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
-    echo "    ${BLUE}"
+    printf '%s\n' "    ${BLUE}[${RED}!${BLUE}] ${RED}UPDATING..."
+    printf '%s\n' "    ${BLUE}"
 	if [[ ! -d $HOME/gelacritty ]]; then
         git clone https://github.com/zim0369/gelacritty $HOME/gelacritty 
         cd $HOME/gelacritty 
     else
-        echo; 
-        echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}Directory Exists..."
+        printf '%s\n'; 
+        printf '%s' "    ${BLUE}[${RED}!${BLUE}] ${RED}Directory Exists..."
         cd $HOME/gelacritty
         git pull
 	fi
@@ -185,25 +183,37 @@ update_gela () {
 	{ reset_color; exit; }
 }
 
+show_help() {
+    cat << EOF
+
+Set fonts and themes in alacritty
+${DEFAULT_FG}
+USAGE: ${0##*/} [OPTIONS]
+
+OPTIONS:
+    ${BOLD}${GREEN} -h${NORMAL}${DEFAULT_FG}, --help        Show this help message
+    ${BOLD}${GREEN} -d${NORMAL}${DEFAULT_FG}, --dark        Select a random dark theme
+    ${BOLD}${GREEN} -l${NORMAL}${DEFAULT_FG}, --light       Select a random light theme
+EOF
+}
+
 ## Main menu
 interface() {
 until [[ "$REPLY" =~ ^[q/Q]$ ]]; do
     banner
-    echo "
+    printf '%s\n' "
     ${BLACKBG}${BOLD}${WHITE} D ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Dark Theme ($total_dark)
     ${WHITEBG}${BOLD}${BLACK} L ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Light Theme ($total_light)
     ${BLACKBG}${BOLD}${WHITE} F ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Fonts ($total_fonts)
     ${WHITEBG}${BOLD}${BLACK} S ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Font Size
-    ${BLACKBG}${BOLD}${WHITE} J ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Random Dark
-    ${WHITEBG}${BOLD}${BLACK} K ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Random Light
     ${BLACKBG}${BOLD}${WHITE} U ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Update
     ${WHITEBG}${BOLD}${BLACK} Q ${BLUE}${DEFAULT_BG}${NORMAL}${GREEN} Quit
     "
 
-    { read -n 1 -p ${BLUE}"    [${RED}Select Option${BLUE}]: ${GREEN}"; echo; }
-    { banner; echo;}
+    { read -n 1 -p ${BLUE}"    [${RED}Select Option${BLUE}]: ${GREEN}"; printf '%s\n'; }
+    { banner; printf '%s\n';}
 
-    if [[ "$REPLY" =~ ^[d/D/l/L/f/F/s/S/j/J/k/K/u/U/q/Q]$ ]]; then      #validate input
+    if [[ "$REPLY" =~ ^[d/D/l/L/f/F/s/S/u/U/q/Q]$ ]]; then      #validate input
         if [[ "$REPLY" =~ ^[d/D]$ ]]; then
             select_dark
         elif [[ "$REPLY" =~ ^[l/L]$ ]]; then
@@ -212,52 +222,20 @@ until [[ "$REPLY" =~ ^[q/Q]$ ]]; do
             apply_font_family
         elif [[ "$REPLY" =~ ^[s/S]$ ]]; then
             apply_font_size
-        elif [[ "$REPLY" =~ ^[j/j]$ ]]; then
-            random_dark
-        elif [[ "$REPLY" =~ ^[k/K]$ ]]; then
-            random_light
         elif [[ "$REPLY" =~ ^[u/U]$ ]]; then
             update_gela
         fi
     else
-        echo -n "    ${BLUE}[${RED}!${BLUE}] ${RED}Invalid Option, Try Again."
+        printf '%s' "    ${BLUE}[${RED}!${BLUE}] ${RED}Invalid Option, Try Again."
         sleep 2
     fi
 done
-{ echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Bye Bye, Have A Nice Day!"; echo; reset_color; exit 0; }
+{ printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Bye Bye, Have A Nice Day!"; printf '%s\n'; reset_color; exit 0; }
 } 
-
-show_help() {
-	cat << EOF
-Randomly select & apply an alacritty color theme
-
-USAGE: ${0##*/} [OPTIONS]
-
-OPTIONS:
-	-h, --help 		Show this help message
-	-d, --dark 		Only select dark themes
-	-l, --light 	Only select light themes
-EOF
-}
-
+ 
 main() {
-	local opts type theme
-	opts="$(getopt --options hdl --longoptions help,dark,light --name "${0##*/}" -- "${@}")"
-	
-	eval set -- "${opts}"
-	while true; do
-		case "${1}" in
-			-h | --help ) 	show_help; exit 0;;
-			-d | --dark ) 	random_dark;;
-			-l | --light ) 	random_light;;
-			-- ) 			shift; break;;
-			* ) 			break;;
-		esac
-		shift
-	done
-     
 	if ! [ -s "${ALACRITTY_DIR}/alacritty.yml" ]; then
-		echo "    ${BLUE}[${RED}*${BLUE}] ${RED}Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'"${BLUE}
+		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Cannot find alacritty configuration: '${ALACRITTY_DIR}/alacritty.yml'"${BLUE}
 		printf '%s\n' "    ${BLUE}[${RED}*${BLUE}] ${RED}Creating one for you..."${BLUE}
         # sudo sed -i -e 's|program: .*|program: '$SHELL'|g' /usr/local/share/gelacritty/alacritty.yml
 	    cp -r /usr/local/share/gelacritty/alacritty.yml $ALACRITTY_DIR
@@ -270,7 +248,28 @@ main() {
         { reset_color; exit; }
 	fi
 	
-    interface
+    if [ "$1" == "h" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+        show_help
+        exit 0
+    elif [ "$1" == "d" ] || [ "$1" == "-d" ] || [ "$1" == "--dark" ]; then
+        random_dark
+        exit 0
+    elif [ "$1" == "l" ] || [ "$1" == "-l" ] || [ "$1" == "--light" ]; then
+        random_light
+        exit 0
+    elif [ "$1" == "t" ] || [ "$1" == "-t" ] || [ "$1" == "--toggle" ]; then
+        toggle_theme
+        exit 0
+    elif [ $# -eq 0 ]; then
+        interface
+        exit 0
+    else
+        printf '\n%s\n' "    ${BOLD}${RED} ❌ ${NORMAL} ${BLUE}BAD COMMAND...${BLUE}";
+        sleep 1; 
+        banner
+        show_help 
+        exit 0 
+    fi
 	
 	return 0
 }
