@@ -179,7 +179,6 @@ update_gela () {
         cd $HOME/gelacritty
         git pull
 	fi
-    chmod +x * 
     sh install 
 	{ reset_color; exit; }
 }
