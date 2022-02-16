@@ -15,13 +15,9 @@ cd into the cloned directory:
 ```
 cd $HOME/gelacritty
 ```
-Make the script executable:
-```
-chmod +x *
-```
 Run the installer:
 ```
-./install
+sh install
 ```
 All done! :heavy_check_mark:
 
