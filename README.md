@@ -8,28 +8,26 @@
 
 ### Installation :rainbow:
 
-```
-git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
-```
+    git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
+
 cd into the cloned directory:
-```
-cd $HOME/gelacritty
-```
+
+    cd $HOME/gelacritty
+
 Run the installer:
-```
-sh install
-```
-All done! :heavy_check_mark:
+
+    sh install
+
+All done! :heavy\_check\_mark:
 
 Now use command `gela`
 
-### Uninstall :broken_heart:
-```
-cd $HOME/gelacritty
-./uninstall
-```
+### Uninstall :broken\_heart:
 
-### Tip :spiral_notepad:
+    cd $HOME/gelacritty
+    ./uninstall
+
+### Tip :spiral\_notepad:
 
 For quickly switching theme:
 
@@ -38,13 +36,3 @@ Dark: `-d` flag
 Light: `-l` flag
 
 BTW, Doesn't work on WINDOWS
-
-### Credits :hugs:
-
-stewie410: https://www.reddit.com/user/stewie410/ 
-
-Aniket: https://github.com/AniketS01
-
-Aditya Shakya: https://github.com/adi1090x 
-
-Rajasegar: https://github.com/rajasegar
