@@ -79,7 +79,8 @@ select_light () {
         return 1
     fi
     printf '\n%s' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${scheme##*/}"
-	printf '%s' "light" > "/tmp/gela_theme.txt"
+    printf '%s' "${scheme}" > "/tmp/gela_theme_name.txt"
+    printf '%s' "light" > "/tmp/gela_theme.txt"
 	{ reset_color; exit; }
 }
  
@@ -94,7 +95,8 @@ select_dark () {
         return 1
     fi
     printf '\n%s' "    ${BLUE}[${RED}*${BLUE}] ${ORANGE}Theme Set To: ${scheme##*/}"
-	printf '%s' "dark" > "/tmp/gela_theme.txt"
+    printf '%s' "${scheme}" > "/tmp/gela_theme_name.txt"
+    printf '%s' "dark" > "/tmp/gela_theme.txt"
 	{ reset_color; exit; }
 }
  
@@ -142,6 +144,7 @@ random_light () {
 		printf '%s\n' "Failed to apply theme!" >&2
 		return 1
 	fi
+  printf %s "${random_scheme##*/}" > "/tmp/gela_theme_name.txt"
 	printf '%s' "light" > "/tmp/gela_theme.txt"
     { reset_color; exit; }
 }
@@ -154,6 +157,7 @@ random_dark () {
 		printf '%s\n' "Failed to apply theme!" >&2
 		return 1
 	fi
+  printf %s "${random_scheme##*/}" > "/tmp/gela_theme_name.txt"
 	printf '%s' "dark" > "/tmp/gela_theme.txt"
     { reset_color; exit; }
 }
@@ -184,9 +188,10 @@ update_gela () {
 }
 
 show_help() {
+    theme=`cat /tmp/gela_theme_name.txt`
+     
+    printf '\n%s\n' "Current Theme: '${RED}${theme}${DEFAULT_FG}'";
     cat << EOF
-
-Set fonts and themes in alacritty
 ${DEFAULT_FG}
 USAGE: ${0##*/} [OPTIONS]
 

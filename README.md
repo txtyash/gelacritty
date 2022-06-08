@@ -29,10 +29,12 @@ Now use command `gela`
 
 ### Tip :spiral\_notepad:
 
-For quickly switching theme:
+Dark: `pkitty d`
 
-Dark: `-d` flag
+Light: `pkitty l`
 
-Light: `-l` flag
+Help: `pkitty h`
+
+*Currently applied theme can be seen under the help menu*
 
 BTW, Doesn't work on WINDOWS
