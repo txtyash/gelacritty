@@ -29,11 +29,11 @@ Now use command `gela`
 
 ### Tip :spiral\_notepad:
 
-Dark: `pkitty d`
+Dark: `gela d`
 
-Light: `pkitty l`
+Light: `gela l`
 
-Help: `pkitty h`
+Help: `gela h`
 
 *Currently applied theme can be seen under the help menu*
 
