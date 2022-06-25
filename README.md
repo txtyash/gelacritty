@@ -29,11 +29,14 @@ Now use command `gela`
 
 ### Tip :spiral\_notepad:
 
+Help: `gela h`
+
 Dark: `gela d`
 
 Light: `gela l`
 
-Help: `gela h`
+Example Mapping in alacritty.conf to toggle light and dark colorscheme:
+`- { key: C, mods: Alt, command: {program: "gela", args: ["t"]}}`
 
 *Currently applied theme can be seen under the help menu*
 
