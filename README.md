@@ -6,6 +6,10 @@
 <strong> :sparkle: There's 200+ themes! :sparkle: </strong>
 </p>
 
+### Dependencies :couple:
+
+    fzf git sed grep find wget alacritty
+
 ### Installation :rainbow:
 
     git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
