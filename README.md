@@ -2,25 +2,34 @@
 <h3 align='center'> :jack_o_lantern: Set light/dark themes & fonts in Alacritty :christmas_tree: </h1>
 
 <p align='center'>
+<b>Project has been abandoned</b>
 <img src="images/gela_banner.png" /><br>
 <strong> :sparkle: There's 200+ themes! :sparkle: </strong>
 </p>
 
 ### Dependencies :couple:
 
-    fzf git sed grep find wget alacritty
+```
+fzf git sed grep find wget alacritty
+```
 
 ### Installation :rainbow:
 
-    git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
+```
+git clone https://github.com/zim0369/gelacritty $HOME/gelacritty
+```
 
 cd into the cloned directory:
 
-    cd $HOME/gelacritty
+```
+cd $HOME/gelacritty
+```
 
 Run the installer:
 
-    sh install
+```
+sh install
+```
 
 All done! :heavy\_check\_mark:
 
@@ -28,8 +37,10 @@ Now use command `gela`
 
 ### Uninstall :broken\_heart:
 
-    cd $HOME/gelacritty
-    ./uninstall
+```
+cd $HOME/gelacritty
+./uninstall
+```
 
 ### Tip :spiral\_notepad:
 
